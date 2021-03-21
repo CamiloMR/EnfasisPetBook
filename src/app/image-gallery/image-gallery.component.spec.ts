@@ -1,9 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
 import { AppModule } from '../app.module';
-import { FilterimagesPipe } from '../filterimages.pipe';
-import { ImageService } from '../image.service';
-
 import { GalleryComponent } from './image-gallery.component';
 
 describe('ImageGalleryComponent', () => {
