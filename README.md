@@ -29,4 +29,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Video explicación de pruebas unitarias
 
----> https://drive.google.com/file/d/1x55KFAigZfJ1e8Xs-6xOf3LqiWahUl1Z/view?usp=sharing
+(Ver el vídeo por incognito puede generar fallas a la hora de cargar, ver normal) ---> https://drive.google.com/file/d/1x55KFAigZfJ1e8Xs-6xOf3LqiWahUl1Z/view?usp=sharing
