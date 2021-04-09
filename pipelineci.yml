@@ -1,0 +1,10 @@
+trigger:
+- main
+
+stages:
+- stage: Build
+  jobs: 
+  - task:
+    
+pool:
+  vmImage: 'vs2017-win2016'
