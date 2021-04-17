@@ -11,7 +11,7 @@ stages:
     variables:
       sonarCloudToken: 'Service connection Sonar Cloud'
       sonarCloudOrganization: 'camilomr'
-      sonarCloudProjectKey: 'camilomr'
+      sonarCloudProjectKey: 'PetBook'
       sonarCloudProjectName: 'PetBook'
 
     steps:
