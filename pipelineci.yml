@@ -9,7 +9,7 @@ stages:
       vmImage: 'vs2017-win2016'
 
     variables:
-      sonarCloudToken: 'Service connection Sonar Cloud'
+      sonarCloudNameToken: 'Service connection Sonar Cloud'
       sonarCloudOrganization: 'camilomr'
       sonarCloudProjectKey: 'PetBook'
       sonarCloudProjectName: 'PetBook'
@@ -17,7 +17,7 @@ stages:
     steps:
     - task: SonarCloudPrepare@1
       inputs:
-        SonarCloud: 'Service connection Sonar Cloud'
+        SonarCloud: '$(sonarCloudNameToken)'
         organization: '$(sonarCloudOrganization)'
         scannerMode: 'CLI'
         configMode: 'manual'
