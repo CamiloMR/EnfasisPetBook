@@ -21,7 +21,7 @@ steps:
     projectName: $(sonarCloudProjectName)
 
 - task: Npm@1
-displayName: 'npm install'
+  displayName: 'npm install'
   inputs:
     verbose: false
     
