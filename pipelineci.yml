@@ -22,12 +22,12 @@ steps:
 
 - task: Npm@1
   displayName: 'npm install'
-  input:
+  inputs:
     verbose: false
     
 - task: Npm@1
   displayName: 'npm build'
-  intpus:
+  inputs:
     command: custom
     verbose: false
     customCommand: 'run build'
