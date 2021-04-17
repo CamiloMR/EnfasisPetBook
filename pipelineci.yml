@@ -1,10 +1,48 @@
 trigger:
 - main
 
-stages:
-- stage: Build
-  jobs: 
-  - task:
-    
 pool:
   vmImage: 'vs2017-win2016'
+
+variables:
+  sonarCloudToken: '03bfcf1545de15700edc13c8374a24f1b86b34cd'
+  sonarCloudOrganization: 'camilomr'
+  sonarCloudProjectKey: 'camilomr'
+  sonarCloudProjectName: 'PetBook'
+
+
+steps:
+- task: SonarSource.sonarcloud.14d9cde6-c1da-4d55-aa01-2965cd301255.SonarCloudPrepare@1
+  displayName: 'Prepare analysis on SonarCloud'
+  inputs:
+    SonarCloud: $(sonarCloudToken)
+    organization: $(sonarCloudOrganization)
+    projectKey: $(sonarCloudProjectKey)
+    projectName: $(sonarCloudProjectName)
+
+- task: Npm@1
+displayName: 'npm install'
+  inputs:
+    verbose: false
+    
+- task: Npm@1
+  displayName: 'npm build'
+  intpus:
+    command: custom
+    verbose: false
+    customCommand: 'run build'
+  
+- task: SonarSource.sonarcloud.ce096e50-6155-4de8-8800-4221aaeed4a1.SonarCloudAnalyze@1
+  displayName: 'Run Code Analysis'
+  
+- task: SonarSource.sonarcloud.38b27399-a642-40af-bb7d-9971f69712e8.SonarCloudPublish@1
+  displayName: 'Publish Quality Gate Result'
+
+- task: Npm@1
+  displayName: 'npm test'
+  inputs:
+    command: custom
+    verbose: false
+    customCommand: 'run test-ci'
+
+    
