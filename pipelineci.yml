@@ -5,7 +5,7 @@ pool:
   vmImage: 'vs2017-win2016'
 
 variables:
-  sonarCloudToken: '03bfcf1545de15700edc13c8374a24f1b86b34cd'
+  sonarCloudToken: 'Service connection Sonar Cloud'
   sonarCloudOrganization: 'camilomr'
   sonarCloudProjectKey: 'camilomr'
   sonarCloudProjectName: 'PetBook'
