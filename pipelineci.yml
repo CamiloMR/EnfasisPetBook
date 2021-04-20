@@ -51,5 +51,13 @@ stages:
         archiveType: 'zip'
         archiveFile: '$(Build.ArtifactStagingDirectory)/frontpetbook.zip'
         replaceExistingArchive: true
+
+    - task: S3Upload@1
+      inputs:
+        awsCredentials: 'Service connection bucket s3'
+        regionName: 'us-east-1'
+        bucketName: 'mrstorage'
+        sourceFolder: '$(System.DefaultWorkingDirectory)/dist'
+        globExpressions: '**/*.zip'
   
     
