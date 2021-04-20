@@ -57,7 +57,7 @@ stages:
         awsCredentials: 'Service connection bucket s3'
         regionName: 'us-east-1'
         bucketName: 'mrstorage'
-        sourceFolder: '$(System.DefaultWorkingDirectory)/dist'
+        sourceFolder: '$(Build.ArtifactStagingDirectory)'
         globExpressions: '**/*.zip'
   
     
