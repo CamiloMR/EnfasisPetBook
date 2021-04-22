@@ -15,6 +15,7 @@ stages:
 
     steps:
     - task: SonarCloudPrepare@1
+      displayName: 'SonarCloud Prepare Analyze'
       inputs:
         SonarCloud: 'Service connection Sonar Cloud'
         organization: '$(sonarCloudOrganization)'
@@ -25,26 +26,32 @@ stages:
         cliSources: '.'
         
     - task: Npm@1
+      displayName: 'npm install'
       inputs:
         command: 'install'
       
     - task: Npm@1
+      displayName: 'npm run build'
       inputs:
         command: 'custom'
         customCommand: 'run build'
       
     - task: SonarCloudAnalyze@1
+      displayName: 'SonarCloud Analyze'
     
     - task: SonarCloudPublish@1
+      displayName: 'SonarCloud Quality Gate'
       inputs:
         pollingTimeoutSec: '300'
 
     - task: Npm@1
+      displayName: 'npm run test-ci'
       inputs:
         command: 'custom'
         customCommand: 'run test-ci'
     
     - task: ArchiveFiles@2
+      displayName: 'Comprimir archivos a zip'
       inputs:
         rootFolderOrFile: '$(System.DefaultWorkingDirectory)/dist'
         includeRootFolder: false
@@ -53,6 +60,7 @@ stages:
         replaceExistingArchive: true
 
     - task: S3Upload@1
+      displayName: 'Subir archivo a S3'
       inputs:
         awsCredentials: 'Service connection bucket s3'
         regionName: 'us-east-1'
