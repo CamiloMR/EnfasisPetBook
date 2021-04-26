@@ -20,8 +20,4 @@ export class GalleryComponent implements OnChanges {
     this.allImages = this.imageService.getImages();
   }
   
-  cambiosParaSonar() {
-    
-  }
-  
 }
