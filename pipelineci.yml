@@ -35,7 +35,13 @@ stages:
       inputs:
         command: 'custom'
         customCommand: 'run build'
-      
+
+    - task: Npm@1
+      displayName: 'npm run test-ci'
+      inputs:
+        command: 'custom'
+        customCommand: 'run test-ci'
+    
     - task: SonarCloudAnalyze@1
       displayName: 'SonarCloud Analyze'
     
@@ -44,12 +50,11 @@ stages:
       inputs:
         pollingTimeoutSec: '300'
 
-    - task: Npm@1
-      displayName: 'npm run test-ci'
+    - task: sonarcloud-buildbreaker@2
       inputs:
-        command: 'custom'
-        customCommand: 'run test-ci'
-    
+        SonarCloud: 'Service connection Sonar Cloud'
+        organization: '$(sonarCloudOrganization)'
+        
     - task: ArchiveFiles@2
       displayName: 'Comprimir archivos a zip'
       inputs:
