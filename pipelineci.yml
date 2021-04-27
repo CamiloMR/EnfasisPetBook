@@ -69,6 +69,7 @@ stages:
         globExpressions: '**/*.zip'
   
     - task: sonarcloud-buildbreaker@2
+      displayName: 'Sonar Cloud Build Breaker'
       inputs:
         SonarCloud: 'Service connection Sonar Cloud'
         organization: '$(sonarCloudOrganization)'
