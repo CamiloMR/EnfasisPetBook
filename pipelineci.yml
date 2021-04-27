@@ -49,11 +49,6 @@ stages:
       displayName: 'SonarCloud Quality Gate'
       inputs:
         pollingTimeoutSec: '300'
-
-    - task: sonarcloud-buildbreaker@2
-      inputs:
-        SonarCloud: 'Service connection Sonar Cloud'
-        organization: '$(sonarCloudOrganization)'
         
     - task: ArchiveFiles@2
       displayName: 'Comprimir archivos a zip'
@@ -73,4 +68,8 @@ stages:
         sourceFolder: '$(Build.ArtifactStagingDirectory)'
         globExpressions: '**/*.zip'
   
+    - task: sonarcloud-buildbreaker@2
+      inputs:
+        SonarCloud: 'Service connection Sonar Cloud'
+        organization: '$(sonarCloudOrganization)'
     
