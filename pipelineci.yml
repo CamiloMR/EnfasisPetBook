@@ -50,6 +50,12 @@ stages:
       inputs:
         pollingTimeoutSec: '300'
         
+    - task: sonarcloud-buildbreaker@2
+      displayName: 'Sonar Cloud Build Breaker'
+      inputs:
+        SonarCloud: 'Service connection Sonar Cloud'
+        organization: '$(sonarCloudOrganization)'
+
     - task: ArchiveFiles@2
       displayName: 'Comprimir archivos a zip'
       inputs:
@@ -67,10 +73,10 @@ stages:
         bucketName: 'mrstorage'
         sourceFolder: '$(Build.ArtifactStagingDirectory)'
         globExpressions: '**/*.zip'
-  
-    - task: sonarcloud-buildbreaker@2
-      displayName: 'Sonar Cloud Build Breaker'
-      inputs:
-        SonarCloud: 'Service connection Sonar Cloud'
-        organization: '$(sonarCloudOrganization)'
     
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'Service connection docker hub'
+        repository: 'docker-petbook'
+        command: 'buildAndPush'
+        Dockerfile: '**/Dockerfile'
