@@ -12,6 +12,7 @@ stages:
       sonarCloudOrganization: 'camilomr'
       sonarCloudProjectKey: 'PetBook'
       sonarCloudProjectName: 'PetBook'
+      imageRepository: 'docker-petbook'
 
     steps:
     - task: SonarCloudPrepare@1
@@ -77,6 +78,10 @@ stages:
     - task: Docker@2
       inputs:
         containerRegistry: 'Service connection docker hub'
-        repository: 'docker-petbook'
-        command: 'buildAndPush'
+        command: 'build'
         Dockerfile: '**/Dockerfile'
+    
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'Service connection docker hub'
+        command: 'push'
