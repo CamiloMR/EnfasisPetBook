@@ -12,7 +12,6 @@ stages:
       sonarCloudOrganization: 'camilomr'
       sonarCloudProjectKey: 'PetBook'
       sonarCloudProjectName: 'PetBook'
-      imageRepository: 'docker-petbook'
 
     steps:
     - task: SonarCloudPrepare@1
@@ -60,7 +59,7 @@ stages:
     - task: ArchiveFiles@2
       displayName: 'Comprimir archivos a zip'
       inputs:
-        rootFolderOrFile: '$(System.DefaultWorkingDirectory)/dist'
+        rootFolderOrFile: '$(System.DefaultWorkingDirectory)/dist/pet-book'
         includeRootFolder: false
         archiveType: 'zip'
         archiveFile: '$(Build.ArtifactStagingDirectory)/frontpetbook.zip'
@@ -74,14 +73,14 @@ stages:
         bucketName: 'mrstorage'
         sourceFolder: '$(Build.ArtifactStagingDirectory)'
         globExpressions: '**/*.zip'
-    
+
     - task: Docker@2
       displayName: 'Build image docker'
       inputs:
         containerRegistry: 'Service connection docker hub'
         command: 'build'
         Dockerfile: '**/Dockerfile'
-        buildContext: '$(System.DefaultWorkingDirectory)/dist'
+        buildContext: '$(System.DefaultWorkingDirectory)/dist/pet-book'
     
     - task: Docker@2
       displayName: 'Push image docker'
