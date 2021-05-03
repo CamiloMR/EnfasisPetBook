@@ -76,12 +76,15 @@ stages:
         globExpressions: '**/*.zip'
     
     - task: Docker@2
+      displayName: 'Build image docker'
       inputs:
         containerRegistry: 'Service connection docker hub'
         command: 'build'
         Dockerfile: '**/Dockerfile'
+        buildContext: '$(System.DefaultWorkingDirectory)/dist'
     
     - task: Docker@2
+      displayName: 'Push image docker'
       inputs:
         containerRegistry: 'Service connection docker hub'
         command: 'push'
