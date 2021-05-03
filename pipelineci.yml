@@ -80,7 +80,6 @@ stages:
         containerRegistry: 'Service connection docker hub'
         command: 'build'
         Dockerfile: '**/Dockerfile'
-        buildContext: '$(System.DefaultWorkingDirectory)/dist/pet-book'
     
     - task: Docker@2
       displayName: 'Push image docker'
