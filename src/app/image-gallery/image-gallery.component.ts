@@ -19,9 +19,4 @@ export class GalleryComponent implements OnChanges {
   ngOnChanges() {
     this.allImages = this.imageService.getImages();
   }
-  
-  cambiosSonarCloud() {
-  
-  }
-  
 }
