@@ -75,14 +75,18 @@ stages:
         globExpressions: '**/*.zip'
 
     - task: Docker@2
-      displayName: 'Build image docker'
+      displayName: 'Docker login'
       inputs:
         containerRegistry: 'Service connection docker hub'
-        command: 'build'
-        Dockerfile: '**/Dockerfile'
-    
+        command: 'login'
+        addPipelineData: false
+        
     - task: Docker@2
-      displayName: 'Push image docker'
+      displayName: 'Construir y subir imagen docker'
       inputs:
         containerRegistry: 'Service connection docker hub'
-        command: 'push'
+        repository: 'camilomrudem/docker-petbook'
+        command: 'buildAndPush'
+        Dockerfile: '**/Dockerfile'
+        addPipelineData: false
+    
